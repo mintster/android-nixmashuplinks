@@ -1,0 +1,112 @@
+<resources>
+
+    <style name="AppTheme" parent="android:Theme.Holo.Light.DarkActionBar">
+    </style>
+
+    <style name="ListLinkTitle">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingTop">0dp</item>
+        <item name="android:paddingRight">14dp</item>
+        <item name="android:textSize">18dp</item>
+        <item name="android:fontFamily">sans-serif-condensed</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="DetailLinkTitle" parent="ListLinkTitle">
+        <item name="android:textSize">30dp</item>
+    </style>
+
+    <style name="ListDetailLinkTitle" parent="ListLinkTitle">
+        <item name="android:textSize">26dp</item>
+        <item name="android:layout_marginTop">0dp</item>
+    </style>
+
+    <style name="DetailLinkBody">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">20dp</item>
+        <item name="android:layout_marginBottom">20dp</item>
+        <item name="android:layout_marginRight">20dp</item>
+        <item name="android:textSize">16dp</item>
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+
+    <style name="ListDetailLinkBody" parent="DetailLinkBody">
+        <item name="android:layout_marginBottom">0dp</item>
+        <item name="android:layout_marginTop">0dp</item>
+        <item name="android:layout_marginRight">20dp</item>
+        <item name="android:textSize">18dp</item>
+    </style>
+
+    <style name="DetailLinkTags">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">0dp</item>
+        <item name="android:textSize">18dp</item>
+    </style>
+
+    <style name="ListDetailLinkTags" parent="DetailLinkTags">
+        <item name="android:textSize">18dp</item>
+        <item name="android:layout_marginTop">10dp</item>
+    </style>
+
+    <style name="PostDate">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">14dp</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textStyle">italic</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:layout_marginBottom">40dp</item>
+        <item name="android:textColor">#ff666666</item>
+    </style>
+
+    <style name="ListDetailPostDate" parent="PostDate">
+        <item name="android:layout_marginBottom">0dp</item>
+        <item name="android:layout_marginTop">4dp</item>
+    </style>
+
+    <style name="ListPostDate" parent="PostDate">
+        <item name="android:layout_marginBottom">0dp</item>
+        <item name="android:layout_marginTop">4dp</item>
+    </style>
+
+    <style name="LinkTag">
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">#ffb9214f</item>
+        <item name="android:layout_gravity">left</item>
+        <item name="android:layout_width">wrap_content</item>
+    </style>
+
+    <style name="DetailLinkTag" parent="LinkTag">
+        <item name="android:textSize">21dp</item>
+    </style>
+
+    <style name="ListLinkTag" parent="LinkTag">
+        <item name="android:textSize">14dp</item>
+    </style>
+
+    <style name="ListDetailLinkTag" parent="LinkTag">
+        <item name="android:textSize">21dp</item>
+    </style>
+
+    <style name="AboutTitle">
+        <item name="android:fontFamily">sans-serif-condensed</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">21dp</item>
+    </style>
+
+    <style name="AboutVersion">
+        <item name="android:textSize">14dp</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textStyle">italic</item>
+    </style>
+
+    <style name="AboutText">
+        <item name="android:textSize">16dp</item>
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+
+</resources>

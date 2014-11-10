@@ -1,0 +1,34 @@
+apply plugin: 'com.android.application'
+
+android {
+    signingConfigs {
+        keyconfig {
+            keyAlias 'DaveBurkeAndroidKey'
+            keyPassword 'nixmash'
+            storeFile file('/ubuntuland/files/keys/daveburke-android.jks')
+            storePassword 'nixmash'
+        }
+    }
+    compileSdkVersion 17
+    buildToolsVersion '19.1.0'
+    defaultConfig {
+        applicationId "com.nixmash.android.links"
+        minSdkVersion 16
+        targetSdkVersion 19
+        versionCode 2
+        versionName "1.0.1"
+    }
+    buildTypes {
+        release {
+            runProguard false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.keyconfig
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile files('libs/android-support-v4.jar')
+    compile files('libs/commons-lang3-3.3.jar')
+}

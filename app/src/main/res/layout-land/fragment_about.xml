@@ -1,0 +1,62 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              tools:context="com.nixmash.android.links.AboutActivity$PlaceholderFragment"
+              android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="3dp"
+        >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:orientation="vertical"
+        android:layout_marginBottom="20dp"
+        >
+
+        <TextView
+            android:text="@string/about_nixmashuplinks"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/AboutTitle"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/AboutVersion"
+            android:text="@string/about_version"
+            android:id="@+id/about_version_textview"
+            android:gravity="center_horizontal"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/AboutText"
+            android:text="@string/about_intro"
+            android:id="@+id/about_intro_textview"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="20dp"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal"/>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/nixmashup_process"
+            android:gravity="top|center"
+            android:scaleType="fitCenter"
+            android:contentDescription="@string/nixmashup_history_image"
+            android:padding="10dp"
+            android:layout_gravity="top"
+            android:layout_marginBottom="40dp"
+            android:layout_weight="1"/>
+    </LinearLayout>
+
+    </ScrollView>
+</LinearLayout>

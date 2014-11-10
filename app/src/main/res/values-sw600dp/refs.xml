@@ -1,0 +1,6 @@
+<resources>
+
+    <item name="fragment_list_item_link" type="layout">@layout/list_item_detail_link</item>
+
+</resources>
+

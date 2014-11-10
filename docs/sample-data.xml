@@ -1,0 +1,63 @@
+<nixmashuplinks>
+    <nixmashuplink>
+        <id>581</id>
+        <title>In Praise of the JVM</title>
+        <linkurl>
+            http://zeroturnaround.com/rebellabs/5-reasons-the-jvm-development-tools-market-rocks/
+        </linkurl>
+        <linktext>
+            Five reasons why, according to Rebel Labs, that the Java Virtual Machine is so awesome
+            for developers. A fresh yet mature set of technologies, established standards and
+            "good-enough" practices, an abundance of JVM technologies spread across commercial and
+            open source spaces, risk-free experimentation for developers, and an enormous,
+            influential and active community.
+        </linktext>
+        <tags>java|development|career</tags>
+        <postdate>November 2, 2014</postdate>
+        <season>fall</season>
+        <linkimage>IMG1012015</linkimage>
+    </nixmashuplink>
+    <nixmashuplink>
+        <id>580</id>
+        <title>Lowe's Newest Robotic Employee</title>
+        <linkurl>http://youtu.be/Sp9176vm7Co</linkurl>
+        <linktext>
+            Lowe's has a new Autonomous Retail Service Robot they're testing at their San Jose
+            Midtown store. The OSHbot as it is called (for Orchard Supply Hardware) will be "helping
+            customers navigate the store and associates work more effectively." That is, as long as
+            there's a need for associates...
+        </linktext>
+        <tags>futuretech|robotics|trends</tags>
+        <postdate>November 2, 2014</postdate>
+        <season>fall</season>
+        <linkimage>IMG1012014</linkimage>
+    </nixmashuplink>
+    <nixmashuplink>
+        <id>579</id>
+        <title>Driverless Car Stats, Figures and Features</title>
+        <linkurl>http://www.fix.com/blog/driverless-car-revolution/</linkurl>
+        <linktext>
+            Several infographics with statistics and information about Google's Driverless Car along
+            with a 3 minute video of people taking their first ride in it. Looked pretty great.
+        </linktext>
+        <tags>selfdrivingcars|futuretech</tags>
+        <postdate>November 2, 2014</postdate>
+        <season>fall</season>
+        <linkimage>IMG101101015</linkimage>
+    </nixmashuplink>
+    <nixmashuplink>
+        <id>578</id>
+        <title>Grocery Shopping with Glass</title>
+        <linkurl>http://youtu.be/TkfF-WGUisw</linkurl>
+        <linktext>
+            This is a very fun video of a man doing his grocery shopping with Google Glass, from the
+            perspective of the wearer. Purchase list displayed and checked off, with prices
+            subtracted from his shopping budget, ingredient lookup, coupon retrieval and a quick
+            video call to his wife who sees the yogurt selections through his glasses.
+        </linktext>
+        <tags>futuretech|wearables|youtube</tags>
+        <postdate>November 2, 2014</postdate>
+        <season>fall</season>
+        <linkimage>P10100093</linkimage>
+    </nixmashuplink>
+</nixmashuplinks>

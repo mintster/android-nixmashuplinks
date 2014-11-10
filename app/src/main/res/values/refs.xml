@@ -1,0 +1,4 @@
+<resources>
+    <item name="fragment_list_item_link" type="layout">@layout/list_item_link</item>
+    <attr name="fontPath" format="string"/>
+</resources>
