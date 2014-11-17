@@ -28,6 +28,10 @@ Sample data format is found in _docs/sample-data.xml_
 
 Urls used include retrieving ALL links, links by TAG and SEARCH. Url structures are found in _docs/sample-urls.txt_
 
+###Installation###
 
+This repository does not contain production NixMashup Links API Urls and Keys, so uncomment the _api_xml_url, api_images_url, and api_key_ items in *values/strings.xml* for error-free compile.
+
+Because no XML data is being retrieved the v1.0.1 app will intially launch to a blank screen.
 
 
