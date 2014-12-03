@@ -2,7 +2,13 @@
 
 The Android Version of NixMashup Links built in Android Studio.
 
-Version 1.0.1 can be found in the v1.0.1 branch. Master branch contains ongoing development.
+Released Versions are found in their respective branch. v1.0.1, v1.1, etc. Master branch contains ongoing development.
+
+##Application Features - v1.1##
+
+- Navigation Drawer
+- Menu added to individual Link Activity display
+- Tablets now display individual Link Activity page
 
 ##Application Features - v1.0.1##
 
