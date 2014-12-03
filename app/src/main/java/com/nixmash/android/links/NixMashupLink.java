@@ -11,6 +11,7 @@ public class NixMashupLink {
     private static final String JSON_LINKTEXT = "owner";
     private static final String JSON_THUMBNAILURL = "thumbnail_url";
     private static final String JSON_IMAGEURL = "image_url";
+    private static final String JSON_MAXIMAGEURL = "max_image_url";
     private static final String JSON_POSTDATE = "postdate";
     private static final String JSON_TAGS = "tags";
     private static final String JSON_SEASON = "season";
@@ -22,6 +23,7 @@ public class NixMashupLink {
     private String mLinkText;
     private String mThumbnailUrl;
     private String mImageUrl;
+    private String mMaxImageUrl;
     private String mPostDate;
     private String mTags;
 
@@ -48,6 +50,13 @@ public class NixMashupLink {
     }
     public void setImageUrl(String imageUrl) {
         mImageUrl = imageUrl;
+    }
+
+    public String getMaxImageUrl() {
+        return mMaxImageUrl;
+    }
+    public void setMaxImageUrl(String imageUrl) {
+        mMaxImageUrl = imageUrl;
     }
 
     public String getTitle() {
@@ -112,6 +121,7 @@ public class NixMashupLink {
         mLinkText = json.getString(JSON_LINKTEXT);
         mThumbnailUrl = json.getString(JSON_THUMBNAILURL);
         mImageUrl = json.getString(JSON_IMAGEURL);
+        mMaxImageUrl = json.getString(JSON_MAXIMAGEURL);
         mPostDate = json.getString(JSON_POSTDATE);
         mTags = json.getString(JSON_TAGS);
         mSeason = json.getString(JSON_SEASON);
@@ -126,6 +136,7 @@ public class NixMashupLink {
         json.put(JSON_LINKTEXT, mLinkText);
         json.put(JSON_THUMBNAILURL, mThumbnailUrl);
         json.put(JSON_IMAGEURL, mImageUrl);
+        json.put(JSON_MAXIMAGEURL, mMaxImageUrl);
         json.put(JSON_POSTDATE, mPostDate);
         json.put(JSON_TAGS, mTags);
         json.put(JSON_SEASON, mSeason);

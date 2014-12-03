@@ -5,7 +5,6 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.Typeface;
 import android.net.Uri;
@@ -16,7 +15,6 @@ import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.ListFragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -31,11 +29,7 @@ import android.widget.TextView;
 
 import org.apache.commons.lang3.StringUtils;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 
 public class LinkListFragment extends ListFragment {
     private static final String TAG = "LinkListFragment";
@@ -154,15 +148,15 @@ public class LinkListFragment extends ListFragment {
                             isSmallDevice = false;
                             detailsTextView.setText(link.getLinkText());
                             postDateTextView.setText(_postDate);
-                            titleTextView.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View view) {
-                                    Uri linkPageUri = Uri.parse(fLink.getLinkUrl());
-                                    Intent i = new Intent(getActivity(), WebPageActivity.class);
-                                    i.setData(linkPageUri);
-                                    startActivity(i);
-                                }
-                            });
+//                            titleTextView.setOnClickListener(new View.OnClickListener() {
+//                                @Override
+//                                public void onClick(View view) {
+//                                    Uri linkPageUri = Uri.parse(fLink.getLinkUrl());
+//                                    Intent i = new Intent(getActivity(), WebPageActivity.class);
+//                                    i.setData(linkPageUri);
+//                                    startActivity(i);
+//                                }
+//                            });
                         } else {
                             listPostDateTextView.setText(_postDate);
                         }
@@ -186,29 +180,21 @@ public class LinkListFragment extends ListFragment {
                             _tagWidth = tag.length();
                             _availableWidth = _availableWidth - _tagWidth;
 
-//                        if ((_availableWidth > _tagWidth && LinkUtils.isInSmallMode(listItemContext))
-//                                || !LinkUtils.isInSmallMode(listItemContext)) {
-
                             if ((_availableWidth > _tagWidth && isSmallDevice)
                                     || !isSmallDevice) {
 
                                 final TextView tagView = new TextView(listItemContext);
                                 tagView.setText(StringUtils.capitalize(tag) + " ");
-                                if (!isSmallDevice) {
-                                    tagView.setOnClickListener(new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View v) {
-                                            PreferenceManager.getDefaultSharedPreferences(getActivity())
-                                                    .edit()
-                                                    .putString(LinkFetchr.PREF_TAG_QUERY, tag)
-                                                    .putString(LinkFetchr.PREF_SEARCH_QUERY, null)
-                                                    .commit();
-
-                                            Intent i = new Intent(getActivity(), LinkListActivity.class);
-                                            startActivity(i);
-                                        }
-                                    });
-                                }
+//                                if (!isSmallDevice) {
+//                                    tagView.setOnClickListener(new View.OnClickListener() {
+//                                        @Override
+//                                        public void onClick(View v) {
+//                                            LinkUtils.prepareTagSearch(getActivity(), tag);
+//                                            Intent i = new Intent(getActivity(), LinkListActivity.class);
+//                                            startActivity(i);
+//                                        }
+//                                    });
+//                                }
 
                                 tagsView.addView(tagView);
 
@@ -295,6 +281,7 @@ public class LinkListFragment extends ListFragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_item_search:
+                LinkUtils.resetCategoryFocus();
                 FragmentManager fm = getActivity()
                         .getSupportFragmentManager();
                 SearchFragment dialog = SearchFragment
@@ -303,12 +290,15 @@ public class LinkListFragment extends ListFragment {
                 dialog.show(fm, DIALOG_SEARCH);
                 return true;
             case R.id.menu_item_clear:
-                updateItems(true);
+                LinkUtils.startLinkListActivity(getActivity());
+//                updateItems(true);
                 return true;
             case R.id.menu_item_refresh:
-                updateItems(true);
+                LinkUtils.startLinkListActivity(getActivity());
+//                updateItems(true);
                 return true;
             case R.id.menu_item_about:
+                LinkUtils.resetCategoryFocus();
                 Intent i = new Intent(getActivity(), AboutActivity.class);
                 startActivity(i);
                 return true;
@@ -324,6 +314,8 @@ public class LinkListFragment extends ListFragment {
                 return super.onOptionsItemSelected(item);
         }
     }
+
+
 
     @Override
     public void onPrepareOptionsMenu(Menu menu) {

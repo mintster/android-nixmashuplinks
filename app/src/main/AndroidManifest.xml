@@ -30,20 +30,17 @@
         <activity
             android:name=".LinkActivity"
             android:label="@string/app_name" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".LinkListActivity" />
         </activity>
         <activity
             android:name=".LinkPagerActivity"
             android:label="@string/app_name" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".LinkListActivity" />
         </activity>
         <activity
             android:name=".WebPageActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize" />
+            android:configChanges="keyboardHidden|orientation|screenSize">
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+                       android:value=".LinkPagerActivity" />
+        </activity>
 
         <service
             android:name=".PollService"

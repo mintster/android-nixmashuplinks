@@ -3,7 +3,9 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               tools:context="com.nixmash.android.links.AboutActivity$PlaceholderFragment"
-              android:orientation="vertical">
+              android:orientation="vertical"
+              android:layout_gravity="left"
+              >
 
     <ScrollView
         android:layout_width="match_parent"

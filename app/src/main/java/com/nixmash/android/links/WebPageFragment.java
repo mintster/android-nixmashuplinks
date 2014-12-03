@@ -2,9 +2,12 @@ package com.nixmash.android.links;
 
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.support.v4.app.NavUtils;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebChromeClient;
@@ -17,13 +20,17 @@ import android.widget.TextView;
 public class WebPageFragment extends VisibleFragment {
 
     private String mUrl;
+    private String mLinkId;
     private WebView mWebView;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRetainInstance(true);
-        mUrl = getActivity().getIntent().getData().toString();
+        setHasOptionsMenu(true);
+       // mUrl = getActivity().getIntent().getData().toString();
+        mUrl = getActivity().getIntent().getStringExtra(LinkFragment.EXTRA_LINK_URL);
+        mLinkId = getActivity().getIntent().getStringExtra(LinkFragment.EXTRA_LINK_ID);
     }
 
     @SuppressLint("SetJavaScriptEnabled")
@@ -32,10 +39,10 @@ public class WebPageFragment extends VisibleFragment {
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_web_page, parent, false);
 
-        final ProgressBar progressBar = (ProgressBar)v.findViewById(R.id.progressBar);
+        final ProgressBar progressBar = (ProgressBar) v.findViewById(R.id.progressBar);
         progressBar.setMax(100); // WebChromeClient reports in range 0-100
 
-        mWebView = (WebView)v.findViewById(R.id.webView);
+        mWebView = (WebView) v.findViewById(R.id.webView);
         mWebView.getSettings().setJavaScriptEnabled(true);
         mWebView.setWebViewClient(new WebViewClient() {
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
@@ -57,7 +64,28 @@ public class WebPageFragment extends VisibleFragment {
 
         mWebView.loadUrl(mUrl);
 
+        if (NavUtils.getParentActivityName(getActivity()) != null)
+            getActivity().getActionBar().setDisplayHomeAsUpEnabled(true);
+
         return v;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                if (NavUtils.getParentActivityName(getActivity()) != null) {
+                    Intent i = new Intent(getActivity(), LinkPagerActivity.class);
+                    i.putExtra(LinkFragment.EXTRA_LINK_ID, mLinkId);
+                    i.putExtra(SingleFragmentActivity.EXTRA_TAG, LinkListActivity.tagPosition);
+                    startActivityForResult(i, 0);
+                    NavUtils.navigateUpTo(getActivity(), i);
+                }
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
 

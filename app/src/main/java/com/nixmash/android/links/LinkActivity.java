@@ -1,8 +1,5 @@
 package com.nixmash.android.links;
 
-
-import java.util.UUID;
-
 import android.support.v4.app.Fragment;
 
 public class LinkActivity extends SingleFragmentActivity {

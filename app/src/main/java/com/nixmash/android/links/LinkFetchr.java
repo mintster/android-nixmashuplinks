@@ -3,6 +3,7 @@ package com.nixmash.android.links;
 import android.net.Uri;
 import android.util.Log;
 
+import org.apache.commons.lang3.StringUtils;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
@@ -144,7 +145,7 @@ public class LinkFetchr {
                     if (tagName.equalsIgnoreCase(XML_LINK)) {
                         link = new NixMashupLink();
                     } else if (tagName.equalsIgnoreCase(XML_ID)) {
-                            link.setId(parser.nextText());
+                        link.setId(parser.nextText());
                     } else if (tagName.equalsIgnoreCase(XML_TITLE)) {
                         link.setTitle(parser.nextText());
                     } else if (tagName.equalsIgnoreCase(XML_LINKTEXT)) {
@@ -165,12 +166,16 @@ public class LinkFetchr {
                 case XmlPullParser.END_TAG:
                     tagName = parser.getName();
                     if (tagName.equalsIgnoreCase(XML_LINK)) {
-                        String thumbnailUrl =
-                                String.format("%s/%s/zThumb_%s", IMAGES_ENDPOINT, link.getSeason(), link.getLinkImage());
-                        String imageUrl =
-                                String.format("%s/%s/zOpt_%s", IMAGES_ENDPOINT, link.getSeason(), link.getLinkImage());
-                        link.setThumbnailUrl(thumbnailUrl);
-                        link.setImageUrl(imageUrl);
+//                        String thumbnailUrl = imageUrl(
+//                                String.format("%s/%s/zThumb_%s", IMAGES_ENDPOINT, link.getSeason(), link.getLinkImage());
+//                        String imageUrl =
+//                                String.format("%s/%s/zOpt_%s", IMAGES_ENDPOINT, link.getSeason(), link.getLinkImage());
+//                        String maxImageUrl =
+//                                String.format("%s/%s/%s", IMAGES_ENDPOINT, link.getSeason(), link.getLinkImage());
+
+                        link.setThumbnailUrl(imageUrl(link, "zThumb_"));
+                        link.setImageUrl(imageUrl(link, "zOpt_"));
+                        link.setMaxImageUrl(imageUrl(link, StringUtils.EMPTY));
                         links.add(link);
                     }
                     break;
@@ -179,5 +184,10 @@ public class LinkFetchr {
             eventType = parser.next();
 
         }
+    }
+
+    private String imageUrl(NixMashupLink link, String prefix) {
+        return String.format("%s/%s/%s%s", IMAGES_ENDPOINT, link.getSeason(), prefix, link.getLinkImage());
+
     }
 }

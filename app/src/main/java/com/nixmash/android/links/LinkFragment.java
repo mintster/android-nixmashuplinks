@@ -13,8 +13,11 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.NavUtils;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,9 +33,12 @@ import java.util.Arrays;
 
 public class LinkFragment extends VisibleFragment {
     public static final String EXTRA_LINK_ID = "nixmashuplinks.LINK_ID";
+    public static final String EXTRA_LINK_URL = "nixmashuplinks.LINK_URL";
     public static final String EXTRA_REFRESH_LINKS = "nixmashuplinks.REFRESH_LINKS";
     private static final String TAG = "LinkFragment";
     private static final int SMALL_PORTRAIT_TAGS_WIDTH = 28;
+    private static final int REQUEST_SEARCH = 0;
+    private static final String DIALOG_SEARCH = "search";
 
     NixMashupLink mLink;
     ImageView mImageView;
@@ -43,7 +49,7 @@ public class LinkFragment extends VisibleFragment {
     Bitmap mImage;
     Callbacks mCallbacks;
     String[] mTags;
-    Context listItemContext;
+    Context linkContext;
 
     // region Callbacks
 
@@ -83,8 +89,15 @@ public class LinkFragment extends VisibleFragment {
 
 
     @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.fragment_link_menu, menu);
+    }
+
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
 
         String linkId = (String) getArguments().getSerializable(EXTRA_LINK_ID);
         mLink = Links.get(getActivity()).getLink(linkId);
@@ -93,7 +106,6 @@ public class LinkFragment extends VisibleFragment {
         i.putExtra(LinkFragment.EXTRA_REFRESH_LINKS, "1");
 
         mTags = new String[]{};
-        setHasOptionsMenu(true);
     }
 
     @Override
@@ -101,14 +113,12 @@ public class LinkFragment extends VisibleFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_link, parent, false);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-            if (NavUtils.getParentActivityName(getActivity()) != null) {
-                getActivity().getActionBar().setDisplayHomeAsUpEnabled(true);
-            }
-        }
-
         mImageView = (ImageView) v.findViewById(R.id.details_imageView);
-        new LoadImage().execute(mLink.getImageUrl());
+        linkContext = v.getContext();
+        if (LinkUtils.isPhoneScreenType(linkContext))
+            new LoadImage().execute(mLink.getImageUrl());
+        else
+            new LoadImage().execute(mLink.getImageUrl());
 
         mTitleView = (TextView) v.findViewById(R.id.details_id_titleTextView);
         mTitleView.setText(mLink.getTitle());
@@ -122,14 +132,15 @@ public class LinkFragment extends VisibleFragment {
         mTitleView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Uri linkPageUri = Uri.parse(mLink.getLinkUrl());
+//                Uri linkPageUri = Uri.parse(mLink.getLinkUrl());
                 Intent i = new Intent(getActivity(), WebPageActivity.class);
-                i.setData(linkPageUri);
+                i.putExtra(LinkFragment.EXTRA_LINK_ID, mLink.getId());
+                i.putExtra(LinkFragment.EXTRA_LINK_URL, mLink.getLinkUrl());
+//                i.setData(linkPageUri);
                 startActivity(i);
             }
         });
 
-        listItemContext = v.getContext();
         mTags = StringUtils.split(mLink.getTags(), "|");
 
         int _widthSoFar;
@@ -138,7 +149,7 @@ public class LinkFragment extends VisibleFragment {
 
         LinearLayout contentView = (LinearLayout) v.findViewById(R.id.details_tags_layout);
         contentView.removeAllViews();
-        LinearLayout tagsView = new LinearLayout(listItemContext);
+        LinearLayout tagsView = new LinearLayout(linkContext);
 
         _smallPortraitWidth = SMALL_PORTRAIT_TAGS_WIDTH;
         _widthSoFar = 0;
@@ -148,10 +159,10 @@ public class LinkFragment extends VisibleFragment {
             _tagWidth = tag.length();
             _widthSoFar += _tagWidth;
 
-            if ((_widthSoFar < _smallPortraitWidth && LinkUtils.isInSmallMode(listItemContext)) ||
-                    !LinkUtils.isInSmallMode(listItemContext)) {
+            if ((_widthSoFar < _smallPortraitWidth && LinkUtils.isInSmallMode(linkContext)) ||
+                    !LinkUtils.isInSmallMode(linkContext)) {
 
-                final TextView tagView = new TextView(listItemContext);
+                final TextView tagView = new TextView(linkContext);
                 tagView.setText(StringUtils.capitalize(tag) + " ");
                 tagView.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -200,16 +211,52 @@ public class LinkFragment extends VisibleFragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode != Activity.RESULT_OK) return;
+        if (requestCode == REQUEST_SEARCH) {
+            Intent i = new Intent(getActivity(), LinkListActivity.class);
+            startActivity(i);
+        }
+    }
+
+    @Override
+    public void onPrepareOptionsMenu(Menu menu) {
+        super.onPrepareOptionsMenu(menu);
+
+        MenuItem toggleItem = menu.findItem(R.id.menu_item_toggle_polling);
+        if (PollService.isServiceAlarmOn(getActivity())) {
+            toggleItem.setTitle(R.string.stop_polling);
+        } else {
+            toggleItem.setTitle(R.string.start_polling);
+        }
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case android.R.id.home:
-                Intent i = new Intent(getActivity(), LinkListActivity.class);
-                i.putExtra(LinkFragment.EXTRA_REFRESH_LINKS, "0");
-//                NavUtils.navigateUpFromSameTask(getActivity());
-                startActivity(i);
+            case R.id.menu_item_search:
+                LinkUtils.resetCategoryFocus();
+                FragmentManager fm = getActivity()
+                        .getSupportFragmentManager();
+                SearchFragment dialog = SearchFragment
+                        .newInstance();
+                dialog.setTargetFragment(LinkFragment.this, REQUEST_SEARCH);
+                dialog.show(fm, DIALOG_SEARCH);
+                return true;
+            case R.id.menu_item_clear:
+                LinkUtils.startLinkListActivity(getActivity());
+//                updateItems(true);
+                return true;
+            case R.id.menu_item_about:
+                LinkUtils.resetCategoryFocus();
+                Intent aboutIntent = new Intent(getActivity(), AboutActivity.class);
+                startActivity(aboutIntent);
+                return true;
+            case R.id.menu_item_toggle_polling:
+                boolean shouldStartAlarm = !PollService.isServiceAlarmOn(getActivity());
+                PollService.setServiceAlarm(getActivity(), shouldStartAlarm);
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
+                    getActivity().invalidateOptionsMenu();
+
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

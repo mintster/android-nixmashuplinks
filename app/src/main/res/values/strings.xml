@@ -19,10 +19,39 @@
     <string name="title_activity_about">About NixMashup Links</string>
     <string name="menu_about">About NixMashup Links</string>
     <string name="about_nixmashuplinks">About NixMashup Links</string>
-    <string name="about_version">Version 1.0, Released Nov 1, 2014</string>
+    <string name="about_version">Version 1.1, Released Dec 3, 2014</string>
 
-    <string name="about_intro">NixMashup Links for Android was built by Dave Burke who is also the author of the links.\n\nLinks in this application are first published as part of a NixMashup at http://nixmash.com, with each NixMashup post containing 8 to 10 links. The links are then extracted from the NixMashup and individually published at http://nixmashuplinks.com.\n\nThis process is demonstrated in the image below.</string>
+    <string name="about_intro">NixMashup Links for Android was built by Dave Burke who is also the author of the links.\n\nLinks in this application are first published as a NixMashup collection of 8 to 10 links on my blog at http://nixmash.com. The links are then extracted from the NixMashup blog posts and published at http://nixmashuplinks.com, where they are individually indexed, categorized and addressable.\n\nThis process is demonstrated in the image below.</string>
     <string name="nixmashup_history_image">NixMashup Link History</string>
+
+    <string-array name="category_display_array">
+        <item>All Records</item>
+        <item>Linux</item>
+        <item>Future Tech</item>
+        <item>Clean Energy</item>
+        <item>Android</item>
+        <item>Java Development</item>
+        <item>Career</item>
+        <item>Social Media</item>
+        <item>Internet of Things</item>
+        <item>Fun</item>
+    </string-array>
+    <string-array name="category_search_array">
+        <item>ALL</item>
+        <item>tag:linux OR tag:windowstolinux OR tag:ubuntu</item>
+        <item>tag:future OR tag:futuretech OR tag:trends</item>
+        <item>tag:solar OR tag:alternativeenergy OR tag:climatesolutions OR tag:cleanenergy
+</item>
+        <item>tag:android OR tag:androidl OR tag:androidwear</item>
+        <item>tag:java OR tag:eclipse OR tag:java8 OR tag:jknowledge OR tag:coding</item>
+        <item>tag:career OR tag:freelancing</item>
+        <item>tag:socialmedia OR tag:socialmarketing OR tag:socialnetworks</item>
+        <item>tag:iot</item>
+        <item>tag:fun OR tag:funny</item>
+    </string-array>
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
+
 
     <!--<string name="api_xml_url">http://server.com/rest/</string>-->
     <!--<string name="api_images_url">http://server.com/images</string>-->

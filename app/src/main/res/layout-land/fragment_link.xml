@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:layout_height="fill_parent"
@@ -6,50 +7,51 @@
               android:layout_gravity="top"
               android:gravity="top"
               android:orientation="horizontal"
-              android:weightSum="1">
+       >
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="wrap_content"
-              android:layout_height="fill_parent"
-              android:layout_marginTop="10dp"
-              android:layout_gravity="left|fill_vertical"
-              android:gravity="top"
-              android:orientation="horizontal"
-              android:layout_weight="0.99"
-              android:weightSum="1">
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                  android:layout_width="0dp"
+                  android:layout_height="fill_parent"
+                  android:layout_marginTop="10dp"
+                  android:layout_gravity="left|fill_vertical"
+                  android:gravity="top"
+                  android:orientation="horizontal"
+                  android:layout_weight="1">
 
-    <ImageView
-        android:id="@+id/details_imageView"
-        android:layout_width="120dp"
-        android:layout_height="176dp"
-        android:layout_gravity="top|fill_horizontal"
-        android:gravity="top"
-        android:layout_margin="10dp"
-        android:adjustViewBounds="false"
-        android:background="@drawable/img_background"
-        android:padding="0dp"
-        android:layout_weight="0.71"
-        android:scaleType="fitXY" />
 
-</LinearLayout>
+        <ImageView
+            android:id="@+id/details_imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|fill_horizontal"
+            android:gravity="top"
+            android:layout_margin="10dp"
+            android:adjustViewBounds="false"
+            android:background="@drawable/img_background"
+            android:padding="0dp"
+            android:scaleType="fitXY"
+            />
+
+        </LinearLayout>
 
     <ScrollView
         xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="397dp"
+        android:layout_width="0dp"
         android:layout_height="fill_parent"
-        android:layout_gravity="top">
+        android:layout_weight="2">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="12dp"
+            android:layout_margin="20dp"
             android:orientation="vertical"
+            android:layout_below="@id/details_imageView"
             android:layout_gravity="fill_vertical">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingRight="20dp"
+                android:paddingRight="10dp"
                 style="@style/DetailLinkTitle"
                 android:id="@+id/details_id_titleTextView"/>
 
@@ -60,7 +62,9 @@
 
             <LinearLayout
                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:paddingRight="8dp"
+                android:layout_below="@id/details_id_bodyTextView"
                 android:gravity="top"
                 android:id="@+id/details_tags_layout"
                 android:orientation="vertical"
@@ -73,5 +77,5 @@
 
         </LinearLayout>
     </ScrollView>
+</LinearLayout>
 
-    </LinearLayout>

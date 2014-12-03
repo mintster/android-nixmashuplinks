@@ -6,6 +6,7 @@
               android:orientation="vertical"
               tools:context="com.nixmash.android.links.LinkListActivity"
               tools:ignore="MergeRootFrame"
+              android:layout_gravity="left"
     >
 
     <LinearLayout
