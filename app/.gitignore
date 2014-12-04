@@ -6,7 +6,5 @@ local.properties
 build
 local
 
-build.gradle
 app-release.apk
-
 src/main/res/values/links.xml
