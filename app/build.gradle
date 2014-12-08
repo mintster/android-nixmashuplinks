@@ -4,9 +4,9 @@ android {
     signingConfigs {
         keyconfig {
             keyAlias 'DaveBurkeAndroidKey'
-            keyPassword 'nixmash'
+            keyPassword keyPassword
             storeFile file('/ubuntuland/files/keys/daveburke-android.jks')
-            storePassword 'nixmash'
+            storePassword storePassword
         }
     }
     compileSdkVersion 17
