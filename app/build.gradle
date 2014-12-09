@@ -1,14 +1,17 @@
 apply plugin: 'com.android.application'
+apply plugin: 'signing'
 
 android {
-    signingConfigs {
-        keyconfig {
-            keyAlias 'DaveBurkeAndroidKey'
-            keyPassword keyPassword
-            storeFile file('/ubuntuland/files/keys/daveburke-android.jks')
-            storePassword storePassword
+
+        signingConfigs {
+            keyconfig {
+                keyAlias 'DaveBurkeAndroidKey'
+                keyPassword myKeyPassword
+                storeFile file('/ubuntuland/files/nixmashuplinks.jks')
+                storePassword myStorePassword
+            }
         }
-    }
+
     compileSdkVersion 17
     buildToolsVersion '19.1.0'
     defaultConfig {
@@ -23,6 +26,7 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'),
                     'proguard-rules.pro'
+            //noinspection GroovyAssignabilityCheck
             signingConfig signingConfigs.keyconfig
         }
     }

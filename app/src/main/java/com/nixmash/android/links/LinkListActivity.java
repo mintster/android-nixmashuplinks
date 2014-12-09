@@ -31,7 +31,8 @@ public class LinkListActivity extends SingleFragmentActivity
     @Override
     public void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
-        LinkListFragment fragment = (LinkListFragment) getSupportFragmentManager()
+        LinkListFragment fragment =
+                (LinkListFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.fragmentContainer);
         LinkUtils.prepareCategorySearch(this, LinkUtils.ALL_RECORDS);
             fragment.updateItems();

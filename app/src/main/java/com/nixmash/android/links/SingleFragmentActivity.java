@@ -27,7 +27,8 @@ public abstract class SingleFragmentActivity extends FragmentActivity
 
     @Override
     public void onNewIntent(Intent intent) {
-        int tagPosition = intent.getIntExtra(EXTRA_TAG, EXTRA_TAG_NOT_SET);
+        int tagPosition = intent.getIntExtra(EXTRA_TAG,
+                EXTRA_TAG_NOT_SET);
         if (tagPosition != EXTRA_TAG_NOT_SET)
         {
             mNavigationDrawerHelper.setSelection(tagPosition);

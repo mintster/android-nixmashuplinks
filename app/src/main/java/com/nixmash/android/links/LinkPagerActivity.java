@@ -1,7 +1,6 @@
 package com.nixmash.android.links;
 
 
-
 import java.util.ArrayList;
 
 import android.content.Intent;
@@ -25,7 +24,8 @@ public class LinkPagerActivity extends FragmentActivity
     ViewPager mViewPager;
     NavigationDrawerHelper mNavigationDrawerHelper;
 
-    public void onLinkUpdated(NixMashupLink link) {}
+    public void onLinkUpdated(NixMashupLink link) {
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -53,14 +53,15 @@ public class LinkPagerActivity extends FragmentActivity
             public int getCount() {
                 return links.size();
             }
+
             @Override
             public Fragment getItem(int pos) {
-                String linkId =  links.get(pos).getId();
+                String linkId = links.get(pos).getId();
                 return LinkFragment.newInstance(linkId);
             }
         });
 
-        String linkId = (String)getIntent().getSerializableExtra(LinkFragment.EXTRA_LINK_ID);
+        String linkId = (String) getIntent().getSerializableExtra(LinkFragment.EXTRA_LINK_ID);
         for (int i = 0; i < links.size(); i++) {
             if (links.get(i).getId().equals(linkId)) {
                 mViewPager.setCurrentItem(i);
@@ -72,9 +73,12 @@ public class LinkPagerActivity extends FragmentActivity
         mNavigationDrawerHelper.init(this, this);
 
         Intent startupIntent = getIntent();
-        int tagPosition = startupIntent.getIntExtra(SingleFragmentActivity.EXTRA_TAG, SingleFragmentActivity.EXTRA_TAG_NOT_SET);
-        if (tagPosition != SingleFragmentActivity.EXTRA_TAG_NOT_SET)
-        {
+        int tagPosition =
+                startupIntent.getIntExtra(
+                        SingleFragmentActivity.EXTRA_TAG,
+                        SingleFragmentActivity.EXTRA_TAG_NOT_SET);
+
+        if (tagPosition != SingleFragmentActivity.EXTRA_TAG_NOT_SET) {
             mNavigationDrawerHelper.setSelection(tagPosition);
         }
     }
