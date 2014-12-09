@@ -24,7 +24,6 @@ public class LinkFetchr {
     public static final String PREF_TAG_QUERY = "tagQuery";
     public static final String PREF_LAST_RESULT_ID = "lastresultId";
 
-    //    private static final String ENDPOINT = "http://api.nixmashuplinks.com/rest/links/xml/";
     private static final String XML_ENDPOINT = NixMashupLinksApp.getContext().getResources().getString(R.string.api_xml_url);
     private static final String IMAGES_ENDPOINT = NixMashupLinksApp.getContext().getResources().getString(R.string.api_images_url);
     private static final String API_KEY = NixMashupLinksApp.getContext().getResources().getString(R.string.api_key);
