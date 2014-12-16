@@ -32,6 +32,9 @@ import org.apache.commons.lang3.StringUtils;
 import java.util.ArrayList;
 
 public class LinkListFragment extends ListFragment {
+
+    // region Properties
+
     private static final String TAG = "LinkListFragment";
     private static final int SMALL_PORTRAIT_TAGS_WIDTH = 40;
     private ArrayList<NixMashupLink> mLinks;
@@ -43,6 +46,8 @@ public class LinkListFragment extends ListFragment {
     private static final int REQUEST_SEARCH = 0;
     private static final String DIALOG_SEARCH = "search";
 
+    // endregion
+
     public interface Callbacks {
         void onLinkSelected(NixMashupLink nixMashupLink);
     }
@@ -51,9 +56,10 @@ public class LinkListFragment extends ListFragment {
         @Override
         public void onReceive(Context context, Intent intent) {
 
-            // if we receive this, we're visible, so cancel
-            // the notification
+//            if we receive this, we're visible, so cancel
+//            the notification
 //            Log.i(TAG, "canceling notification");
+
             setResultCode(Activity.RESULT_CANCELED);
         }
     };
@@ -241,7 +247,8 @@ public class LinkListFragment extends ListFragment {
         mCallbacks.onLinkSelected(c);
     }
 
-    private class FetchItemsTask extends AsyncTask<Void, Void, ArrayList<NixMashupLink>> {
+    private class FetchItemsTask extends
+            AsyncTask<Void, Void, ArrayList<NixMashupLink>> {
         @Override
         protected ArrayList<NixMashupLink> doInBackground(Void... params) {
             Activity activity = getActivity();

@@ -57,7 +57,8 @@ public class LinkJSONSerializer {
     }
 
 
-    public void saveLinks(ArrayList<NixMashupLink> links) throws JSONException, IOException {
+    public void saveLinks(ArrayList<NixMashupLink> links)
+            throws JSONException, IOException {
         // build an array in JSON
         JSONArray array = new JSONArray();
         for (NixMashupLink c : links)
@@ -66,7 +67,8 @@ public class LinkJSONSerializer {
         // write the file to disk
         Writer writer = null;
         try {
-            OutputStream out = mContext.openFileOutput(mFilename, Context.MODE_PRIVATE);
+            OutputStream out = mContext.openFileOutput(mFilename,
+                                                  Context.MODE_PRIVATE);
             writer = new OutputStreamWriter(out);
             writer.write(array.toString());
         } finally {
