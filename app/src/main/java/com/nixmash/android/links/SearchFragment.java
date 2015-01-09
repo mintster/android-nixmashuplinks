@@ -6,13 +6,15 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.v4.app.DialogFragment;
+import android.app.DialogFragment;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
-public class SearchFragment extends DialogFragment {
+public class SearchFragment extends DialogFragment implements View.OnClickListener {
 
     String mSearch;
 
@@ -67,5 +69,11 @@ public class SearchFragment extends DialogFragment {
                     }
                 })
                 .create();
+    }
+
+
+    @Override
+    public void onClick(View v) {
+
     }
 }

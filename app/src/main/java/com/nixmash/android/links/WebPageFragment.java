@@ -4,8 +4,8 @@ package com.nixmash.android.links;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.app.Fragment;
 import android.support.v4.app.NavUtils;
+import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -14,7 +14,6 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 
 
 public class WebPageFragment extends VisibleFragment {
@@ -65,7 +64,7 @@ public class WebPageFragment extends VisibleFragment {
         mWebView.loadUrl(mUrl);
 
         if (NavUtils.getParentActivityName(getActivity()) != null)
-            getActivity().getActionBar().setDisplayHomeAsUpEnabled(true);
+            ((ActionBarActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         return v;
     }
@@ -78,7 +77,7 @@ public class WebPageFragment extends VisibleFragment {
                 if (NavUtils.getParentActivityName(getActivity()) != null) {
                     Intent i = new Intent(getActivity(), LinkPagerActivity.class);
                     i.putExtra(LinkFragment.EXTRA_LINK_ID, mLinkId);
-                    i.putExtra(SingleFragmentActivity.EXTRA_TAG, LinkListActivity.tagPosition);
+                    i.putExtra(BaseActivity.EXTRA_CATEGORY_POSITION, BaseActivity.categoryPosition);
                     startActivityForResult(i, 0);
                     NavUtils.navigateUpTo(getActivity(), i);
                 }

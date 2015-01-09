@@ -5,16 +5,13 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.NavUtils;
+import android.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -29,14 +26,13 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.io.InputStream;
 import java.net.URL;
-import java.util.Arrays;
 
 public class LinkFragment extends VisibleFragment {
     public static final String EXTRA_LINK_ID = "nixmashuplinks.LINK_ID";
     public static final String EXTRA_LINK_URL = "nixmashuplinks.LINK_URL";
     public static final String EXTRA_REFRESH_LINKS = "nixmashuplinks.REFRESH_LINKS";
     private static final String TAG = "LinkFragment";
-    private static final int SMALL_PORTRAIT_TAGS_WIDTH = 28;
+    private static final int SMALL_PORTRAIT_TAGS_WIDTH = 40;
     private static final int REQUEST_SEARCH = 0;
     private static final String DIALOG_SEARCH = "search";
 
@@ -80,6 +76,7 @@ public class LinkFragment extends VisibleFragment {
         LinkFragment fragment = new LinkFragment();
         fragment.setArguments(args);
 
+
         return fragment;
     }
 
@@ -91,7 +88,6 @@ public class LinkFragment extends VisibleFragment {
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
-        inflater.inflate(R.menu.fragment_link_menu, menu);
     }
 
     @Override
@@ -102,8 +98,8 @@ public class LinkFragment extends VisibleFragment {
         String linkId = (String) getArguments().getSerializable(EXTRA_LINK_ID);
         mLink = Links.get(getActivity()).getLink(linkId);
 
-        Intent i = new Intent(getActivity(), LinkListActivity.class);
-        i.putExtra(LinkFragment.EXTRA_REFRESH_LINKS, "1");
+//        Intent i = new Intent(getActivity(), MainActivity.class);
+//        i.putExtra(LinkFragment.EXTRA_REFRESH_LINKS, "1");
 
         mTags = new String[]{};
     }
@@ -143,7 +139,7 @@ public class LinkFragment extends VisibleFragment {
 
         mTags = StringUtils.split(mLink.getTags(), "|");
 
-        int _widthSoFar;
+        int _availableWidth;
         int _smallPortraitWidth;
         int _tagWidth;
 
@@ -152,15 +148,15 @@ public class LinkFragment extends VisibleFragment {
         LinearLayout tagsView = new LinearLayout(linkContext);
 
         _smallPortraitWidth = SMALL_PORTRAIT_TAGS_WIDTH;
-        _widthSoFar = 0;
+        _availableWidth = _smallPortraitWidth;
 
         for (final String tag : mTags) {
 
             _tagWidth = tag.length();
-            _widthSoFar += _tagWidth;
+            _availableWidth = _availableWidth - _tagWidth;
 
-            if ((_widthSoFar < _smallPortraitWidth && LinkUtils.isInSmallMode(linkContext)) ||
-                    !LinkUtils.isInSmallMode(linkContext)) {
+            if (_availableWidth > _tagWidth || !LinkUtils.isInPortraitMode(linkContext))
+            {
 
                 final TextView tagView = new TextView(linkContext);
                 tagView.setText(StringUtils.capitalize(tag) + " ");
@@ -173,7 +169,7 @@ public class LinkFragment extends VisibleFragment {
                                 .putString(LinkFetchr.PREF_SEARCH_QUERY, null)
                                 .commit();
 
-                        Intent i = new Intent(getActivity(), LinkListActivity.class);
+                        Intent i = new Intent(getActivity(), MainActivity.class);
                         startActivity(i);
                     }
                 });
@@ -213,7 +209,7 @@ public class LinkFragment extends VisibleFragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode != Activity.RESULT_OK) return;
         if (requestCode == REQUEST_SEARCH) {
-            Intent i = new Intent(getActivity(), LinkListActivity.class);
+            Intent i = new Intent(getActivity(), MainActivity.class);
             startActivity(i);
         }
     }
@@ -221,13 +217,6 @@ public class LinkFragment extends VisibleFragment {
     @Override
     public void onPrepareOptionsMenu(Menu menu) {
         super.onPrepareOptionsMenu(menu);
-
-        MenuItem toggleItem = menu.findItem(R.id.menu_item_toggle_polling);
-        if (PollService.isServiceAlarmOn(getActivity())) {
-            toggleItem.setTitle(R.string.stop_polling);
-        } else {
-            toggleItem.setTitle(R.string.start_polling);
-        }
     }
 
     @Override
@@ -236,15 +225,17 @@ public class LinkFragment extends VisibleFragment {
             case R.id.menu_item_search:
                 LinkUtils.resetCategoryFocus();
                 FragmentManager fm = getActivity()
-                        .getSupportFragmentManager();
+                        .getFragmentManager();
                 SearchFragment dialog = SearchFragment
                         .newInstance();
                 dialog.setTargetFragment(LinkFragment.this, REQUEST_SEARCH);
                 dialog.show(fm, DIALOG_SEARCH);
                 return true;
             case R.id.menu_item_clear:
-                LinkUtils.startLinkListActivity(getActivity());
-//                updateItems(true);
+                LinkUtils.startMainActivity(getActivity());
+                return true;
+            case R.id.menu_item_refresh:
+                LinkUtils.startMainActivity(getActivity());
                 return true;
             case R.id.menu_item_about:
                 LinkUtils.resetCategoryFocus();

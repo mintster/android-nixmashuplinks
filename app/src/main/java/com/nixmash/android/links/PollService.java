@@ -65,7 +65,7 @@ public class PollService extends IntentService {
 
             Resources r = getResources();
             PendingIntent pi = PendingIntent
-                    .getActivity(this, 0, new Intent(this, LinkListActivity.class), 0);
+                    .getActivity(this, 0, new Intent(this, MainActivity.class), 0);
 
             Notification notification = new NotificationCompat.Builder(this)
                     .setTicker(r.getString(R.string.new_links_title))

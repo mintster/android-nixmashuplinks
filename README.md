@@ -4,13 +4,22 @@ The Android Version of NixMashup Links built in Android Studio.
 
 Released Versions are found in their respective branch. v1.0.1, v1.1, etc. Master branch contains ongoing development.
 
-##Application Features - v1.1##
+##Application Features##
+
+##Version 1.2##
+
+- Redesigned for Material Design and Android 5.0
+- ActionBar replaced by Toolbar
+- Material Design Navigation Drawer with RecyclerView replacing ListView
+- Android 5.x Styling
+
+##Version 1.1##
 
 - Navigation Drawer
 - Menu added to individual Link Activity display
 - Tablets now display individual Link Activity page
 
-##Application Features - v1.0.1##
+##Version 1.0.1##
 
 - Optional Polling Service which notifies user of new NixMashup Links
 - Dynamically generated Urls supporting all links, retrieval by tag, and search

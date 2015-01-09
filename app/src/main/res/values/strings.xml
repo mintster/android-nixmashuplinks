@@ -19,7 +19,7 @@
     <string name="title_activity_about">About NixMashup Links</string>
     <string name="menu_about">About NixMashup Links</string>
     <string name="about_nixmashuplinks">About NixMashup Links</string>
-    <string name="about_version">Version 1.1, Released Dec 3, 2014</string>
+    <string name="about_version">Version 1.2, Released Jan 9, 2015</string>
 
     <string name="about_intro">NixMashup Links for Android was built by Dave Burke who is also the author of the links.\n\nLinks in this application are first published as a NixMashup collection of 8 to 10 links on my blog at http://nixmash.com. The links are then extracted from the NixMashup blog posts and published at http://nixmashuplinks.com, where they are individually indexed, categorized and addressable.\n\nThis process is demonstrated in the image below.</string>
     <string name="nixmashup_history_image">NixMashup Link History</string>

@@ -1,24 +1,46 @@
 package com.nixmash.android.links;
 
-import android.content.Intent;
-import android.view.View;
-import android.widget.AdapterView;
+import android.app.Fragment;
+import android.app.FragmentManager;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 
-
-public class AboutActivity extends SingleFragmentActivity {
-
-    @Override
-    public android.support.v4.app.Fragment createFragment() {
-        return new AboutFragment();
-    }
+public class AboutActivity extends BaseActivity {
 
     @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        LinkUtils.prepareCategorySearch(this,
-                getResources().getStringArray(R.array.category_search_array)[position]);
+    protected void onCreate(Bundle savedInstanceState) {
 
-        Intent intent = new Intent(this, LinkListActivity.class);
-        intent.putExtra(EXTRA_TAG, position);
-        startActivity(intent);
+        setContentView(R.layout.activity_about);
+        super.onCreate(savedInstanceState);
+
+        FragmentManager manager = getFragmentManager();
+        Fragment fragment = manager.findFragmentById(R.id.container);
+
+        if (fragment == null) {
+            fragment = new AboutFragment();
+            manager.beginTransaction()
+                    .add(R.id.container, fragment)
+                    .commit();
+        }
+
     }
+
+//    @Override
+//    public boolean onPrepareOptionsMenu(Menu menu) {
+//        super.onPrepareOptionsMenu(menu);
+//        MenuItem item= menu.findItem(R.menu.fragment_main_menu);
+//        item.setVisible(false);
+//        return true;
+//    }
+
+//
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        super.onCreateOptionsMenu(menu);
+//        MenuItem item = menu.findItem(R.menu.fragment_main_menu);
+//        item.setVisible(false);
+//        return true;
+//    }
 }

@@ -1,23 +1,25 @@
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto"
+      android:background="#7F000000" >
     <item android:id="@+id/menu_item_refresh"
           android:title="@string/menu_refresh"
           android:icon="@drawable/ic_action_refresh"
-          android:showAsAction="ifRoom"
+          app:showAsAction="ifRoom"
         />
     <item android:id="@+id/menu_item_search"
           android:title="@string/search"
-          android:showAsAction="never"
+          app:showAsAction="never"
         />
     <item android:id="@+id/menu_item_clear"
           android:title="@string/clear_search"
-          android:showAsAction="never"
+          app:showAsAction="never"
         />
     <item android:id="@+id/menu_item_toggle_polling"
           android:title="@string/start_polling"
-          android:showAsAction="never"
+          app:showAsAction="never"
         />
     <item android:id="@+id/menu_item_about"
           android:title="@string/menu_about"
-          android:showAsAction="never"
+          app:showAsAction="never"
         />
 </menu>

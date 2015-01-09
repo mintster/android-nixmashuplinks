@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.preference.PreferenceManager;
+import android.view.View;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -12,8 +13,6 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-
-import static android.support.v4.app.ActivityCompat.startActivity;
 
 /**
  * Created by daveburke on 10/27/14.
@@ -46,6 +45,15 @@ public class LinkUtils {
         return _isInSmallMode;
     }
 
+
+    public static Boolean isInPortraitMode(Context _context)
+    {
+        Boolean _isInPortraitMode = true;
+        if(_context.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            _isInPortraitMode = false;
+        }
+        return _isInPortraitMode;
+    }
 
     public static Boolean isMessageRecord(String _sDate) {
         Boolean _isMessageRecord = false;
@@ -85,23 +93,38 @@ public class LinkUtils {
     }
 
     public static void resetCategoryFocus() {
-        LinkListActivity.tagPosition = 0;
+        MainActivity.categoryPosition = 0;
     }
 
 
-    public static void startLinkListActivity(Activity activity) {
+    public static void startMainActivity(Activity activity) {
         LinkUtils.resetCategoryFocus();
         prepareCategorySearch(activity, ALL_RECORDS);
-        Intent linkListIntent = new Intent(activity, LinkListActivity.class);
-        linkListIntent.putExtra(SingleFragmentActivity.EXTRA_TAG, 0);
-
-        activity.startActivity(linkListIntent);
+        Intent intent = new Intent(activity, MainActivity.class);
+        intent.putExtra(BaseActivity.EXTRA_CATEGORY_POSITION, 0);
+        activity.startActivity(intent);
     }
 
     public static Boolean isPhoneScreenType(Context _context) {
         Boolean _isPhoneScreenType = true;
-        if (_context.getResources().getString(R.string.screen_type) != SingleFragmentActivity.PHONE_SCREEN_TYPE)
+        if (!_context.getResources().getString(R.string.screen_type).equals(BaseActivity.PHONE_SCREEN_TYPE))
             _isPhoneScreenType = false;
         return _isPhoneScreenType;
     }
+
+    public static void selectMaterialDrawerCategory(View view, int position, int currentPosition) {
+        view.setSelected(false);
+        int currentTagPosition = ((Activity) view.getContext()).getIntent()
+                .getIntExtra(BaseActivity.EXTRA_CATEGORY_POSITION,
+                        BaseActivity.EXTRA_CATEGORY_NOT_SET_ID);
+//        if (currentTagPosition == position ||
+//                (currentTagPosition == BaseActivity.EXTRA_CATEGORY_NOT_SET_ID && position == 0)) {
+        if (position == currentPosition)
+        {
+            view.setSelected(true);
+        } else {
+            view.setSelected(false);
+        }
+    }
+
 }

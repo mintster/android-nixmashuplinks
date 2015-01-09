@@ -15,8 +15,7 @@ public class StartupReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        // TODO: This method is called when the BroadcastReceiver is receiving
-        // an Intent broadcast.
+//        This method is called when the BroadcastReceiver is receiving an Intent broadcast.
 //        Log.i(TAG, "Received broadcast intent: " + intent.getAction());
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);

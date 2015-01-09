@@ -1,20 +1,21 @@
 package com.nixmash.android.links;
 
 import android.app.Activity;
+import android.app.Fragment;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.Typeface;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.ListFragment;
+import android.app.FragmentManager;
+import android.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -117,6 +118,14 @@ public class LinkListFragment extends ListFragment {
         mLinkDownloadThread.clearQueue();
     }
 
+    public static Fragment newInstance(int position) {
+        Fragment fragment = new LinkListFragment();
+        Bundle args = new Bundle();
+        args.putInt(BaseActivity.EXTRA_CATEGORY_POSITION, position);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -154,15 +163,6 @@ public class LinkListFragment extends ListFragment {
                             isSmallDevice = false;
                             detailsTextView.setText(link.getLinkText());
                             postDateTextView.setText(_postDate);
-//                            titleTextView.setOnClickListener(new View.OnClickListener() {
-//                                @Override
-//                                public void onClick(View view) {
-//                                    Uri linkPageUri = Uri.parse(fLink.getLinkUrl());
-//                                    Intent i = new Intent(getActivity(), WebPageActivity.class);
-//                                    i.setData(linkPageUri);
-//                                    startActivity(i);
-//                                }
-//                            });
                         } else {
                             listPostDateTextView.setText(_postDate);
                         }
@@ -186,22 +186,13 @@ public class LinkListFragment extends ListFragment {
                             _tagWidth = tag.length();
                             _availableWidth = _availableWidth - _tagWidth;
 
-                            if ((_availableWidth > _tagWidth && isSmallDevice)
-                                    || !isSmallDevice) {
+//                            if ((_availableWidth > _tagWidth && isSmallDevice)
+//                                    || Configuration.ORIENTATION_PORTRAIT) {
 
+                            if (_availableWidth > _tagWidth || !LinkUtils.isInPortraitMode(listItemContext))
+                            {
                                 final TextView tagView = new TextView(listItemContext);
                                 tagView.setText(StringUtils.capitalize(tag) + " ");
-//                                if (!isSmallDevice) {
-//                                    tagView.setOnClickListener(new View.OnClickListener() {
-//                                        @Override
-//                                        public void onClick(View v) {
-//                                            LinkUtils.prepareTagSearch(getActivity(), tag);
-//                                            Intent i = new Intent(getActivity(), LinkListActivity.class);
-//                                            startActivity(i);
-//                                        }
-//                                    });
-//                                }
-
                                 tagsView.addView(tagView);
 
                                 int _rightMargin = 7;
@@ -273,7 +264,7 @@ public class LinkListFragment extends ListFragment {
         @Override
         protected void onPostExecute(ArrayList<NixMashupLink> items) {
             mLinks = items;
-            Links.get(getActivity()).saveLinks(mLinks);
+            Links.get(NixMashupLinksApp.getContext()).saveLinks(mLinks);
             setupAdapter();
         }
     }
@@ -281,7 +272,6 @@ public class LinkListFragment extends ListFragment {
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
-        inflater.inflate(R.menu.fragment_main_menu, menu);
     }
 
     @Override
@@ -290,19 +280,17 @@ public class LinkListFragment extends ListFragment {
             case R.id.menu_item_search:
                 LinkUtils.resetCategoryFocus();
                 FragmentManager fm = getActivity()
-                        .getSupportFragmentManager();
+                        .getFragmentManager();
                 SearchFragment dialog = SearchFragment
                         .newInstance();
                 dialog.setTargetFragment(LinkListFragment.this, REQUEST_SEARCH);
                 dialog.show(fm, DIALOG_SEARCH);
                 return true;
             case R.id.menu_item_clear:
-                LinkUtils.startLinkListActivity(getActivity());
-//                updateItems(true);
+                LinkUtils.startMainActivity(getActivity());
                 return true;
             case R.id.menu_item_refresh:
-                LinkUtils.startLinkListActivity(getActivity());
-//                updateItems(true);
+                LinkUtils.startMainActivity(getActivity());
                 return true;
             case R.id.menu_item_about:
                 LinkUtils.resetCategoryFocus();
@@ -322,18 +310,9 @@ public class LinkListFragment extends ListFragment {
         }
     }
 
-
-
     @Override
     public void onPrepareOptionsMenu(Menu menu) {
         super.onPrepareOptionsMenu(menu);
-
-        MenuItem toggleItem = menu.findItem(R.id.menu_item_toggle_polling);
-        if (PollService.isServiceAlarmOn(getActivity())) {
-            toggleItem.setTitle(R.string.stop_polling);
-        } else {
-            toggleItem.setTitle(R.string.start_polling);
-        }
     }
 
     void setupAdapter() {
@@ -371,5 +350,6 @@ public class LinkListFragment extends ListFragment {
         if (requestCode == REQUEST_SEARCH) {
             updateItems();
         }
+//        super.onActivityResult(requestCode, resultCode, data);
     }
 }
