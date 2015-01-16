@@ -2,6 +2,12 @@
 
 The Android Version of NixMashup Links built in Android Studio.
 
+NixMashup Links for Android is available on Google Play
+
+<a target="_blank" href="https://play.google.com/store/apps/details?id=com.nixmash.android.links">
+  <img alt="Get it on Google Play" src="http://nixmashuplinks.com/images/googleplay.png" />
+</a>
+
 Released Versions are found in their respective branch. v1.0.1, v1.1, etc. Master branch contains ongoing development.
 
 ##Application Features##

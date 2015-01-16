@@ -46,10 +46,9 @@ public class LinkUtils {
     }
 
 
-    public static Boolean isInPortraitMode(Context _context)
-    {
+    public static Boolean isInPortraitMode(Context _context) {
         Boolean _isInPortraitMode = true;
-        if(_context.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+        if (_context.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
             _isInPortraitMode = false;
         }
         return _isInPortraitMode;
@@ -114,13 +113,7 @@ public class LinkUtils {
 
     public static void selectMaterialDrawerCategory(View view, int position, int currentPosition) {
         view.setSelected(false);
-        int currentTagPosition = ((Activity) view.getContext()).getIntent()
-                .getIntExtra(BaseActivity.EXTRA_CATEGORY_POSITION,
-                        BaseActivity.EXTRA_CATEGORY_NOT_SET_ID);
-//        if (currentTagPosition == position ||
-//                (currentTagPosition == BaseActivity.EXTRA_CATEGORY_NOT_SET_ID && position == 0)) {
-        if (position == currentPosition)
-        {
+        if (position == currentPosition) {
             view.setSelected(true);
         } else {
             view.setSelected(false);

@@ -14,7 +14,10 @@ import android.view.View;
 /**
  * Created by daveburke on 12/23/14.
  */
-public abstract class BaseActivity extends ActionBarActivity implements CategoryAdapter.OnItemClickListener {
+public abstract class BaseActivity extends ActionBarActivity
+        implements CategoryAdapter.OnItemClickListener {
+
+    // region properties
 
     public static final String EXTRA_CATEGORY_POSITION = "nixmashuplinks.EXTRA_CATEGORY_POSITION";
     public static final int EXTRA_CATEGORY_NOT_SET_ID = -1;
@@ -24,6 +27,8 @@ public abstract class BaseActivity extends ActionBarActivity implements Category
     MaterialDrawerHelper mMaterialDrawerHelper;
 
     private static final int REQUEST_SEARCH = 0;
+
+    // endregion
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,8 +48,6 @@ public abstract class BaseActivity extends ActionBarActivity implements Category
         mMaterialDrawerHelper.handleOnPrepareOptionsMenu(menu);
         return super.onPrepareOptionsMenu(menu);
     }
-
-
 
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
@@ -69,7 +72,6 @@ public abstract class BaseActivity extends ActionBarActivity implements Category
         mMaterialDrawerHelper.handleOptionsItemSelected(item);
         return super.onOptionsItemSelected(item);
     }
-
 
     @Override
     public void onClick(View view, int position) {

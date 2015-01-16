@@ -14,34 +14,29 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-public class MaterialDrawerHelper implements CategoryAdapter.OnItemClickListener {
+public class MaterialDrawerHelper implements
+        CategoryAdapter.OnItemClickListener {
 
+    // region properties
 
     private Toolbar mToolbar;
     private ActionBarDrawerToggle mDrawerToggle;
-
     private DrawerLayout mDrawerLayout;
     private RecyclerView mDrawerList;
-    private LinearLayoutManager mLayoutManager;
-
     private CharSequence mDrawerTitle;
     private CharSequence mTitle;
     private String[] mCategories;
 
+    // endregion
+
     public void init(ActionBarActivity theActivity) {
 
         initView(theActivity);
-
-        if (mToolbar != null)
-
-        {
+        if (mToolbar != null) {
             mToolbar.setTitle(R.string.app_name);
             theActivity.setSupportActionBar(mToolbar);
         }
-
         initDrawer(theActivity);
-
-
     }
 
     private void initView(Activity activity) {
@@ -52,18 +47,15 @@ public class MaterialDrawerHelper implements CategoryAdapter.OnItemClickListener
         mDrawerLayout = (DrawerLayout) activity.findViewById(R.id.drawerLayout);
         mDrawerList = (RecyclerView) activity.findViewById(R.id.left_drawer);
 
-        mLayoutManager = new LinearLayoutManager(activity);
-        mLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        mLayoutManager.scrollToPosition(0);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(activity);
+        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        layoutManager.scrollToPosition(0);
 
-        // set a custom shadow that overlays the main content when the drawer opens
         mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
-        // improve performance by indicating the list if fixed size.
         mDrawerList.setHasFixedSize(true);
-        mDrawerList.setLayoutManager(mLayoutManager);
-
-        // set up the drawer's list view with items and click listener
-        mDrawerList.setAdapter(CategoryAdapter.newInstance(mCategories, this, BaseActivity.categoryPosition));
+        mDrawerList.setLayoutManager(layoutManager);
+        mDrawerList.setAdapter(CategoryAdapter.newInstance(mCategories,
+                this, BaseActivity.categoryPosition));
 
     }
 
@@ -104,18 +96,7 @@ public class MaterialDrawerHelper implements CategoryAdapter.OnItemClickListener
         mDrawerToggle.onConfigurationChanged(newConfig);
     }
 
-    @Override
-    public void onClick(View view, int position) {
-        BaseActivity.categoryPosition = position;
-        mDrawerList.setAdapter(CategoryAdapter.newInstance(mCategories, this, position));
-        Activity activity = (Activity) view.getContext();
-        LinkUtils.prepareCategorySearch(activity,
-                NixMashupLinksApp.getContext().getResources().getStringArray(R.array.category_search_array)[position]);
-        selectItem(activity, position);
-    }
-
     private void selectItem(Activity activity, int position) {
-        BaseActivity.categoryPosition = position;
         mDrawerLayout.closeDrawer(mDrawerList);
         LinkUtils.prepareCategorySearch(activity,
                 activity.getResources().getStringArray(R.array.category_search_array)[position]);
@@ -124,4 +105,17 @@ public class MaterialDrawerHelper implements CategoryAdapter.OnItemClickListener
         activity.startActivity(intent);
     }
 
+    @Override
+    public void onClick(View view, int position) {
+        BaseActivity.categoryPosition = position;
+        mDrawerList.setAdapter(CategoryAdapter.newInstance(mCategories, this, position));
+        Activity activity = (Activity) view.getContext();
+        selectItem(activity, position);
+    }
+
 }
+
+
+
+
+

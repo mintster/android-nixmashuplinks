@@ -7,7 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHolder> {
+public class CategoryAdapter
+        extends RecyclerView.Adapter<CategoryAdapter.ViewHolder> {
     private String[] mDataset;
     private OnItemClickListener mListener;
     private int mPosition;
@@ -24,21 +25,10 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
      */
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public final TextView mTextView;
-
         public ViewHolder(TextView v) {
             super(v);
             mTextView = v;
         }
-    }
-
-    public static CategoryAdapter newInstance(String[] myDataset, OnItemClickListener listener, int position) {
-        return new CategoryAdapter(myDataset, listener, position);
-    }
-
-    private CategoryAdapter(String[] myDataset, OnItemClickListener listener, int position) {
-        mDataset = myDataset;
-        mListener = listener;
-        mPosition = position;
     }
 
     @Override
@@ -65,4 +55,15 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
     public int getItemCount() {
         return mDataset.length;
     }
+
+    public static CategoryAdapter newInstance(String[] myDataset, OnItemClickListener listener, int position) {
+        return new CategoryAdapter(myDataset, listener, position);
+    }
+
+    private CategoryAdapter(String[] myDataset, OnItemClickListener listener, int position) {
+        mDataset = myDataset;
+        mListener = listener;
+        mPosition = position;
+    }
+
 }
