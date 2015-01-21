@@ -1,15 +1,18 @@
-package com.nixmash.android.links;
+package com.nixmash.android.links.ui;
 
 
 import java.util.ArrayList;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.app.FragmentManager;
 
 import android.support.v13.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
+
+import com.nixmash.android.links.io.Links;
+import com.nixmash.android.links.io.model.NixMashupLink;
+import com.nixmash.android.links.R;
 
 public class LinkPagerActivity extends BaseActivity
         implements LinkFragment.Callbacks {

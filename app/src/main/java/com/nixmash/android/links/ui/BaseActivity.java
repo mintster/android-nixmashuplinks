@@ -1,15 +1,16 @@
-package com.nixmash.android.links;
+package com.nixmash.android.links.ui;
 
-import android.app.Activity;
-import android.app.FragmentManager;
-import android.content.Intent;
 import android.content.res.Configuration;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+
+import com.nixmash.android.links.util.CategoryAdapter;
+import com.nixmash.android.links.util.MaterialDrawerHelper;
+import com.nixmash.android.links.service.PollService;
+import com.nixmash.android.links.R;
 
 /**
  * Created by daveburke on 12/23/14.

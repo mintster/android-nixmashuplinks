@@ -1,4 +1,4 @@
-package com.nixmash.android.links;
+package com.nixmash.android.links.util;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -13,6 +13,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+
+import com.nixmash.android.links.R;
+import com.nixmash.android.links.ui.BaseActivity;
+import com.nixmash.android.links.ui.MainActivity;
 
 public class MaterialDrawerHelper implements
         CategoryAdapter.OnItemClickListener {

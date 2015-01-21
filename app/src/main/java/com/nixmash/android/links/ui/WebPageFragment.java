@@ -1,4 +1,4 @@
-package com.nixmash.android.links;
+package com.nixmash.android.links.ui;
 
 
 import android.annotation.SuppressLint;
@@ -14,6 +14,8 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
+
+import com.nixmash.android.links.R;
 
 
 public class WebPageFragment extends VisibleFragment {

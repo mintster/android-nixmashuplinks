@@ -1,7 +1,11 @@
-package com.nixmash.android.links;
+package com.nixmash.android.links.io;
 
 import android.net.Uri;
-import android.util.Log;
+
+import com.nixmash.android.links.util.Installation;
+import com.nixmash.android.links.io.model.NixMashupLink;
+import com.nixmash.android.links.NixMashupLinksApp;
+import com.nixmash.android.links.R;
 
 import org.apache.commons.lang3.StringUtils;
 import org.xmlpull.v1.XmlPullParser;

@@ -1,11 +1,10 @@
-package com.nixmash.android.links;
+package com.nixmash.android.links.ui;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
+
+import com.nixmash.android.links.R;
 
 public class AboutActivity extends BaseActivity {
 

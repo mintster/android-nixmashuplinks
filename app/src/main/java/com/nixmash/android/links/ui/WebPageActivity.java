@@ -1,11 +1,12 @@
-package com.nixmash.android.links;
+package com.nixmash.android.links.ui;
 
 import android.os.Bundle;
 import android.app.Fragment;
 import android.app.FragmentManager;
-import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
+
+import com.nixmash.android.links.R;
 
 public class WebPageActivity extends ActionBarActivity {
 

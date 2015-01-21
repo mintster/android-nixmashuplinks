@@ -1,11 +1,11 @@
-package com.nixmash.android.links;
+package com.nixmash.android.links.io;
 
 
 import java.util.ArrayList;
 
 import android.content.Context;
 
-import android.util.Log;
+import com.nixmash.android.links.io.model.NixMashupLink;
 
 public class Links {
     private static final String TAG = "LinksHandler";

@@ -1,4 +1,4 @@
-package com.nixmash.android.links;
+package com.nixmash.android.links.service;
 
 import android.app.Activity;
 import android.app.AlarmManager;
@@ -12,7 +12,11 @@ import android.content.res.Resources;
 import android.net.ConnectivityManager;
 import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
-import android.util.Log;
+
+import com.nixmash.android.links.io.LinkFetchr;
+import com.nixmash.android.links.io.model.NixMashupLink;
+import com.nixmash.android.links.R;
+import com.nixmash.android.links.ui.MainActivity;
 
 import java.util.ArrayList;
 

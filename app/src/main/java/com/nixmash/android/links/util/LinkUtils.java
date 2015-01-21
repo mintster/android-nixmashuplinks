@@ -1,4 +1,4 @@
-package com.nixmash.android.links;
+package com.nixmash.android.links.util;
 
 import android.app.Activity;
 import android.content.Context;
@@ -6,6 +6,11 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.preference.PreferenceManager;
 import android.view.View;
+
+import com.nixmash.android.links.R;
+import com.nixmash.android.links.io.LinkFetchr;
+import com.nixmash.android.links.ui.BaseActivity;
+import com.nixmash.android.links.ui.MainActivity;
 
 import org.apache.commons.lang3.StringUtils;
 

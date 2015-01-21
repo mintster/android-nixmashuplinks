@@ -1,4 +1,4 @@
-package com.nixmash.android.links;
+package com.nixmash.android.links.ui;
 
 import android.app.Activity;
 import android.content.BroadcastReceiver;
@@ -6,6 +6,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.app.Fragment;
+
+import com.nixmash.android.links.service.PollService;
 
 public abstract class VisibleFragment extends Fragment {
 

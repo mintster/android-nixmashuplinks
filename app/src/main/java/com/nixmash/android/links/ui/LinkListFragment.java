@@ -1,4 +1,4 @@
-package com.nixmash.android.links;
+package com.nixmash.android.links.ui;
 
 import android.app.Activity;
 import android.app.Fragment;
@@ -6,7 +6,6 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
@@ -27,6 +26,15 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.nixmash.android.links.io.LinkDownloader;
+import com.nixmash.android.links.io.LinkFetchr;
+import com.nixmash.android.links.util.LinkUtils;
+import com.nixmash.android.links.io.Links;
+import com.nixmash.android.links.io.model.NixMashupLink;
+import com.nixmash.android.links.NixMashupLinksApp;
+import com.nixmash.android.links.service.PollService;
+import com.nixmash.android.links.R;
 
 import org.apache.commons.lang3.StringUtils;
 

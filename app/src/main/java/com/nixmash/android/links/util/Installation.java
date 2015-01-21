@@ -1,4 +1,4 @@
-package com.nixmash.android.links;
+package com.nixmash.android.links.util;
 
 import android.content.Context;
 

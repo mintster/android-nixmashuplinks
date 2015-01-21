@@ -4,7 +4,7 @@
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:orientation="vertical"
-              tools:context="com.nixmash.android.links.MainActivity"
+              tools:context="com.nixmash.android.links.ui.MainActivity"
               tools:ignore="MergeRootFrame"
               android:layout_gravity="left"
     >

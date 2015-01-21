@@ -1,9 +1,13 @@
-package com.nixmash.android.links;
+package com.nixmash.android.links.ui;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
+
+import com.nixmash.android.links.util.LinkUtils;
+import com.nixmash.android.links.io.model.NixMashupLink;
+import com.nixmash.android.links.R;
 
 public class MainActivity extends BaseActivity implements LinkListFragment.Callbacks {
 

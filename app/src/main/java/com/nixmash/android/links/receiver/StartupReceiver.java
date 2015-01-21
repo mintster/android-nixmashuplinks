@@ -1,11 +1,12 @@
-package com.nixmash.android.links;
+package com.nixmash.android.links.receiver;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-import android.util.Log;
+
+import com.nixmash.android.links.service.PollService;
 
 public class StartupReceiver extends BroadcastReceiver {
     private static final String TAG = "NixMashupLinksStartupReceiver";

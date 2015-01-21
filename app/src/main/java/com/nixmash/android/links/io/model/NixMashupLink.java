@@ -1,4 +1,4 @@
-package com.nixmash.android.links;
+package com.nixmash.android.links.io.model;
 
 import org.json.JSONException;
 import org.json.JSONObject;

@@ -1,4 +1,4 @@
-package com.nixmash.android.links;
+package com.nixmash.android.links.io;
 
 
 import java.io.BufferedReader;
@@ -17,6 +17,8 @@ import org.json.JSONException;
 import org.json.JSONTokener;
 
 import android.content.Context;
+
+import com.nixmash.android.links.io.model.NixMashupLink;
 
 public class LinkJSONSerializer {
 

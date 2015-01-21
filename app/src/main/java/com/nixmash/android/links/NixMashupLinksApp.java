@@ -4,7 +4,7 @@ import android.app.Application;
 import android.content.Context;
 import android.preference.PreferenceManager;
 
-import java.io.IOException;
+import com.nixmash.android.links.io.LinkFetchr;
 
 public class NixMashupLinksApp extends Application {
 

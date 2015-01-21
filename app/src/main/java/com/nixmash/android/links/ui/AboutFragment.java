@@ -1,4 +1,4 @@
-package com.nixmash.android.links;
+package com.nixmash.android.links.ui;
 
 import android.app.Activity;
 import android.app.FragmentManager;
@@ -11,6 +11,10 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.nixmash.android.links.util.LinkUtils;
+import com.nixmash.android.links.service.PollService;
+import com.nixmash.android.links.R;
 
 /**
  * Created by daveburke on 11/20/14.

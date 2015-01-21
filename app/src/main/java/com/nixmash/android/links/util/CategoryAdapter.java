@@ -1,11 +1,12 @@
-package com.nixmash.android.links;
+package com.nixmash.android.links.util;
 
-import android.app.Activity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import com.nixmash.android.links.R;
 
 public class CategoryAdapter
         extends RecyclerView.Adapter<CategoryAdapter.ViewHolder> {

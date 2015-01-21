@@ -1,4 +1,4 @@
-package com.nixmash.android.links;
+package com.nixmash.android.links.ui;
 
 
 import android.annotation.TargetApi;
@@ -21,6 +21,13 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.nixmash.android.links.io.LinkFetchr;
+import com.nixmash.android.links.util.LinkUtils;
+import com.nixmash.android.links.io.Links;
+import com.nixmash.android.links.io.model.NixMashupLink;
+import com.nixmash.android.links.service.PollService;
+import com.nixmash.android.links.R;
 
 import org.apache.commons.lang3.StringUtils;
 

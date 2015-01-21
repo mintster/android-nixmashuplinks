@@ -1,4 +1,4 @@
-package com.nixmash.android.links;
+package com.nixmash.android.links.io;
 
 /**
  * Created by daveburke on 9/17/14.
@@ -15,7 +15,9 @@ import android.graphics.BitmapFactory;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.Message;
-import android.util.Log;
+
+import com.nixmash.android.links.io.LinkFetchr;
+import com.nixmash.android.links.io.model.NixMashupLink;
 
 /**
  * Created by daveburke on 9/8/14.

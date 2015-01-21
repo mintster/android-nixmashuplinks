@@ -1,4 +1,4 @@
-package com.nixmash.android.links;
+package com.nixmash.android.links.ui;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -9,10 +9,11 @@ import android.preference.PreferenceManager;
 import android.app.DialogFragment;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
+
+import com.nixmash.android.links.io.LinkFetchr;
+import com.nixmash.android.links.R;
 
 public class SearchFragment extends DialogFragment implements View.OnClickListener {
 
